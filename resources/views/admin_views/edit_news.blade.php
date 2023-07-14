@@ -37,6 +37,7 @@
             @method('PUT')
 
             <input type="text" name="title" value="{{ $news->title }}">
+             <input type="text" name="category" value="{{ $news->category}}">
               <div class="choose_file">
                <p class="upload_image"> Izaberite sliku</p>
                 <input type="file" name="image" id="" class="hide_file">

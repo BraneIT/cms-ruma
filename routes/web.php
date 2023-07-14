@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,5 +38,6 @@ Route::get('/search', [AdminController::class, 'search'])->name('news_search');
 
 /* FRONTEND ROUTES */  
 
-Route::get('/', [NewsController::class, 'get_news']);
+Route::get('/', [PageController::class, 'home']);
+Route::get('/vesti', [NewsController::class, 'get_news']);
 Route::get('/news/{id}', [NewsController::class, 'show_news'])->name('news.show');

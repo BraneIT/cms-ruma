@@ -86,10 +86,12 @@ class AdminController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'required',
+            'category' => 'required',
             'content' => 'required',
         ]);
 
         $news->title = $validatedData['title'];
+        $news->category = $validatedData['category'];
         $news->content = $validatedData['content'];
             if ($request->hasFile('image')) {
                 $image = $request->file('image');

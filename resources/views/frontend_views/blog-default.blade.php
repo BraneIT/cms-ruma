@@ -13,31 +13,31 @@
       href="img/favicon-16x16.png"
     />
     <!-- custom css -->
-    <link rel="stylesheet" href="css/znamenitosti.css" />
+    <link rel="stylesheet" href="{{asset('css/znamenitosti.css')}}" />
     <!-- link to font awesome -->
     <link
       media="all"
       rel="stylesheet"
-      href="vendors/font-awesome/css/font-awesome.css"
+      href="{{asset('vendors/font-awesome/css/font-awesome.css')}}"
     />
     <!-- link to material icon font -->
     <link
       media="all"
       rel="stylesheet"
-      href="vendors/material-design-icons/material-icons.css"
+      href="{{asset('vendors/material-design-icons/material-icons.css')}}"
     />
     <!-- link to custom icomoon fonts -->
     <link
       rel="stylesheet"
       type="text/css"
-      href="css/fonts/icomoon/icomoon.css"
+      href="{{asset('css/fonts/icomoon/icomoon.css')}}"
     />
     <!-- link to wow js animation -->
-    <link media="all" rel="stylesheet" href="vendors/animate/animate.css" />
+    <link media="all" rel="stylesheet" href="{{asset('vendors/animate/animate.css')}}" />
     <!-- include bootstrap css -->
-    <link media="all" rel="stylesheet" href="css/bootstrap.css" />
+    <link media="all" rel="stylesheet" href="{{asset('css/bootstrap.css')}}" />
     <!-- include main css -->
-    <link media="all" rel="stylesheet" href="css/main.css" />
+    <link media="all" rel="stylesheet" href="{{asset('css/main.css')}}" />
   </head>
   <body>
     <div class="preloader" id="pageLoad">
@@ -54,10 +54,10 @@
             <!-- logo -->
             <div class="logo">
               <a href="index.html">
-                <img class="normal" src="img/logos/logo.svg" alt="Entrada" />
+                <img class="normal" src="{{asset('img/logos/logo.svg')}}" alt="Entrada" />
                 <img
                   class="gray-logo"
-                  src="img/logos/logo-gray.svg"
+                  src="{{asset('img/logos/logo-gray.svg')}}"
                   alt="Entrada"
                 />
               </a>
@@ -811,6 +811,7 @@
                   <div class="blog-holder">
                     <!-- blog list -->
                     <div class="blog-list list-view">
+                    @foreach($news as $item)
                       <article class="article blog-article">
                         <div class="thumbnail">
                           <div class="img-wrap">
@@ -826,19 +827,15 @@
                             <header class="heading">
                               <h3>
                                 <a href="#"
-                                  >Beach &amp; Resort Holiday in Thailand</a
+                                  >{{ $item->title }}</a
                                 >
                               </h3>
                               <time class="info-day" datetime="2011-01-12"
-                                >Aug 11</time
+                                >{{ $item->created_at }}</time
                               >
                             </header>
                             <p>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit, sed do eiusmod tempor incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim
-                              veniam, quis nostrud exercitation ullamco laboris
-                              nisi ut aliquip ex ea commodo consequat.
+                              {{ $item->content}}
                             </p>
                             <footer class="meta">
                               <div class="star-rating">
@@ -852,7 +849,7 @@
                               </div>
                               <div class="footer-sub">
                                 <div class="rate-info">
-                                  Post by <a href="#">Ian Lee</a>
+                                  Kreator <a href="#">{{$item->created_by}}</a>
                                 </div>
                                 <div class="comment">
                                   <a href="#">37 Comments</a>
@@ -877,402 +874,8 @@
                           </div>
                         </div>
                       </article>
-                      <article class="article blog-article">
-                        <div class="thumbnail">
-                          <div class="img-wrap">
-                            <a href="#"
-                              ><img
-                                src="img/blog/img-02.jpg"
-                                height="240"
-                                width="350"
-                                alt="image description"
-                            /></a>
-                          </div>
-                          <div class="description">
-                            <header class="heading">
-                              <h3>
-                                <a href="#"
-                                  >Beach &amp; Resort Holiday in Thailand</a
-                                >
-                              </h3>
-                              <time class="info-day" datetime="2011-01-12"
-                                >Aug 11</time
-                              >
-                            </header>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit, sed do eiusmod tempor incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim
-                              veniam, quis nostrud exercitation ullamco laboris
-                              nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            <footer class="meta">
-                              <div class="star-rating">
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span class="disable"
-                                  ><span class="icon-star"></span
-                                ></span>
-                              </div>
-                              <div class="footer-sub">
-                                <div class="rate-info">
-                                  Post by <a href="#">Ian Lee</a>
-                                </div>
-                                <div class="comment">
-                                  <a href="#">37 Comments</a>
-                                </div>
-                              </div>
-                              <ul class="ico-action">
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-share"></span
-                                  ></a>
-                                </li>
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-favs"></span
-                                  ></a>
-                                </li>
-                              </ul>
-                            </footer>
-                            <div class="link-view">
-                              <a href="#">VIEW POST</a>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article blog-article">
-                        <div class="thumbnail">
-                          <div class="img-wrap">
-                            <a href="#"
-                              ><img
-                                src="img/blog/img-04.jpg"
-                                height="240"
-                                width="350"
-                                alt="image description"
-                            /></a>
-                          </div>
-                          <div class="description">
-                            <header class="heading">
-                              <h3>
-                                <a href="#"
-                                  >Beach &amp; Resort Holiday in Thailand</a
-                                >
-                              </h3>
-                              <time class="info-day" datetime="2011-01-12"
-                                >Aug 11</time
-                              >
-                            </header>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit, sed do eiusmod tempor incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim
-                              veniam, quis nostrud exercitation ullamco laboris
-                              nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            <footer class="meta">
-                              <div class="star-rating">
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span class="disable"
-                                  ><span class="icon-star"></span
-                                ></span>
-                              </div>
-                              <div class="footer-sub">
-                                <div class="rate-info">
-                                  Post by <a href="#">Ian Lee</a>
-                                </div>
-                                <div class="comment">
-                                  <a href="#">37 Comments</a>
-                                </div>
-                              </div>
-                              <ul class="ico-action">
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-share"></span
-                                  ></a>
-                                </li>
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-favs"></span
-                                  ></a>
-                                </li>
-                              </ul>
-                            </footer>
-                            <div class="link-view">
-                              <a href="#">VIEW POST</a>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article blog-article">
-                        <div class="thumbnail">
-                          <div class="img-wrap">
-                            <a href="#"
-                              ><img
-                                src="img/blog/img-05.jpg"
-                                height="240"
-                                width="350"
-                                alt="image description"
-                            /></a>
-                          </div>
-                          <div class="description">
-                            <header class="heading">
-                              <h3>
-                                <a href="#"
-                                  >Beach &amp; Resort Holiday in Thailand</a
-                                >
-                              </h3>
-                              <time class="info-day" datetime="2011-01-12"
-                                >Aug 11</time
-                              >
-                            </header>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit, sed do eiusmod tempor incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim
-                              veniam, quis nostrud exercitation ullamco laboris
-                              nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            <footer class="meta">
-                              <div class="star-rating">
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span class="disable"
-                                  ><span class="icon-star"></span
-                                ></span>
-                              </div>
-                              <div class="footer-sub">
-                                <div class="rate-info">
-                                  Post by <a href="#">Ian Lee</a>
-                                </div>
-                                <div class="comment">
-                                  <a href="#">37 Comments</a>
-                                </div>
-                              </div>
-                              <ul class="ico-action">
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-share"></span
-                                  ></a>
-                                </li>
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-favs"></span
-                                  ></a>
-                                </li>
-                              </ul>
-                            </footer>
-                            <div class="link-view">
-                              <a href="#">VIEW POST</a>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article blog-article">
-                        <div class="thumbnail">
-                          <div class="img-wrap">
-                            <a href="#"
-                              ><img
-                                src="img/blog/img-06.jpg"
-                                height="240"
-                                width="350"
-                                alt="image description"
-                            /></a>
-                          </div>
-                          <div class="description">
-                            <header class="heading">
-                              <h3>
-                                <a href="#"
-                                  >Beach &amp; Resort Holiday in Thailand</a
-                                >
-                              </h3>
-                              <time class="info-day" datetime="2011-01-12"
-                                >Aug 11</time
-                              >
-                            </header>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit, sed do eiusmod tempor incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim
-                              veniam, quis nostrud exercitation ullamco laboris
-                              nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            <footer class="meta">
-                              <div class="star-rating">
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span class="disable"
-                                  ><span class="icon-star"></span
-                                ></span>
-                              </div>
-                              <div class="footer-sub">
-                                <div class="rate-info">
-                                  Post by <a href="#">Ian Lee</a>
-                                </div>
-                                <div class="comment">
-                                  <a href="#">37 Comments</a>
-                                </div>
-                              </div>
-                              <ul class="ico-action">
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-share"></span
-                                  ></a>
-                                </li>
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-favs"></span
-                                  ></a>
-                                </li>
-                              </ul>
-                            </footer>
-                            <div class="link-view">
-                              <a href="#">VIEW POST</a>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article blog-article">
-                        <div class="thumbnail">
-                          <div class="img-wrap">
-                            <a href="#"
-                              ><img
-                                src="img/blog/img-07.jpg"
-                                height="240"
-                                width="350"
-                                alt="image description"
-                            /></a>
-                          </div>
-                          <div class="description">
-                            <header class="heading">
-                              <h3>
-                                <a href="#"
-                                  >Beach &amp; Resort Holiday in Thailand</a
-                                >
-                              </h3>
-                              <time class="info-day" datetime="2011-01-12"
-                                >Aug 11</time
-                              >
-                            </header>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit, sed do eiusmod tempor incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim
-                              veniam, quis nostrud exercitation ullamco laboris
-                              nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            <footer class="meta">
-                              <div class="star-rating">
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span class="disable"
-                                  ><span class="icon-star"></span
-                                ></span>
-                              </div>
-                              <div class="footer-sub">
-                                <div class="rate-info">
-                                  Post by <a href="#">Ian Lee</a>
-                                </div>
-                                <div class="comment">
-                                  <a href="#">37 Comments</a>
-                                </div>
-                              </div>
-                              <ul class="ico-action">
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-share"></span
-                                  ></a>
-                                </li>
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-favs"></span
-                                  ></a>
-                                </li>
-                              </ul>
-                            </footer>
-                            <div class="link-view">
-                              <a href="#">VIEW POST</a>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article blog-article">
-                        <div class="thumbnail">
-                          <div class="img-wrap">
-                            <a href="#"
-                              ><img
-                                src="img/blog/img-08.jpg"
-                                height="240"
-                                width="350"
-                                alt="image description"
-                            /></a>
-                          </div>
-                          <div class="description">
-                            <header class="heading">
-                              <h3>
-                                <a href="#"
-                                  >Beach &amp; Resort Holiday in Thailand</a
-                                >
-                              </h3>
-                              <time class="info-day" datetime="2011-01-12"
-                                >Aug 11</time
-                              >
-                            </header>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit, sed do eiusmod tempor incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim
-                              veniam, quis nostrud exercitation ullamco laboris
-                              nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            <footer class="meta">
-                              <div class="star-rating">
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span class="disable"
-                                  ><span class="icon-star"></span
-                                ></span>
-                              </div>
-                              <div class="footer-sub">
-                                <div class="rate-info">
-                                  Post by <a href="#">Ian Lee</a>
-                                </div>
-                                <div class="comment">
-                                  <a href="#">37 Comments</a>
-                                </div>
-                              </div>
-                              <ul class="ico-action">
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-share"></span
-                                  ></a>
-                                </li>
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-favs"></span
-                                  ></a>
-                                </li>
-                              </ul>
-                            </footer>
-                            <div class="link-view">
-                              <a href="#">VIEW POST</a>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
+                      @endforeach
+                      
                     </div>
                   </div>
                   <!-- pagination wrap -->

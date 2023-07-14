@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Cookie;
 
 class NewsController extends Controller
 {
+
+
 function get_news(Request $request) {
     $news = News::all();
     $cookieName = 'site_visits';
@@ -29,12 +31,12 @@ function get_news(Request $request) {
          // Increment the total_users count in the database
         DB::table('statistics')->increment('total_users');
         return response()
-            ->view('frontend_views.news', ['news' => $news])
+            ->view('frontend_views.blog-default', ['news' => $news])
             ->cookie($cookie);
     }
 
     // Continue with the rest of your code for returning the news view
-    return view('frontend_views.news', ['news' => $news]);
+    return view('frontend_views.blog-default', ['news' => $news]);
 
 
     }
