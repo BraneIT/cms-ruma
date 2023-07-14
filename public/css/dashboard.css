@@ -1,0 +1,346 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #2d8efe;
+    padding: 20px;
+}
+.menu-container {
+    min-height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.menu-container > a,
+.menu-container > a:visited {
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    transition: 0.1s;
+}
+
+.menu-container > a:hover {
+    padding: 1rem;
+    border: 1px solid #fff;
+    scale: 1.02;
+    border-radius: 20px;
+}
+
+.logo-container {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo {
+    width: 20rem;
+    height: fit-content;
+    padding: 2rem 0 1rem 0;
+}
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+.welcome {
+    min-height: 100vh;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.info-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+}
+
+.info-containerr {
+    padding: 32px;
+    text-decoration: underline;
+}
+
+.info-title {
+    font-size: 32px;
+    font-weight: 600;
+}
+.logout-button {
+    font-size: 25px;
+    font-weight: 600;
+    background-color: #2d8efe;
+    padding: 1rem;
+    border-radius: 30px;
+    border: none;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+.add_news {
+    margin-left: 2rem;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: #29ea6a;
+    padding: 1rem;
+    border-radius: 30px;
+}
+
+.add_news > a,
+.add_news > a:visited {
+    text-decoration: none;
+    color: #fff;
+}
+
+.news-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-item {
+    border: 1px solid #000;
+    flex-grow: 1;
+}
+
+.news-image {
+    width: 100px;
+}
+
+.news-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.news-bottom {
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #000;
+}
+
+.news-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.btns-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.form-delete {
+    padding: 1rem;
+    background-color: #eb0b0a;
+    border-radius: 30px;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-delete > button {
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit_btn {
+    padding: 1rem;
+    background-color: #ff9730;
+    border-radius: 30px;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.add_news_wrapper {
+    display: flex;
+
+    flex-direction: column;
+    flex-grow: 1;
+}
+.add_news_container {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add_news_form {
+    width: 80%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.add_news_form > input {
+    margin: 1rem;
+    padding: 1rem;
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    outline: none;
+}
+.add_news_form > input:focus::placeholder {
+    color: transparent;
+}
+.image {
+    background-color: #2d8efe;
+    border: none;
+}
+.choose_file {
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    background: #00ad2d;
+    z-index: 2;
+    border: 1px solid #00ad2d;
+    position: relative;
+    color: #fff;
+    border-radius: 30px;
+    text-align: center;
+    float: left;
+}
+.hide_file {
+    position: absolute;
+    z-index: 1000;
+    cursor: pointer;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.content {
+    width: 100%;
+    height: 15rem;
+    padding: 1rem;
+    border-radius: 20px;
+    outline: none;
+    margin-bottom: 1rem;
+}
+
+.upload_image {
+    font-size: 20px;
+    font-weight: 500;
+}
+.search {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search_form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search_form > input {
+    width: 100%;
+    height: 4vh;
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: center;
+    outline: none;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+}
+
+.news_date {
+    margin-left: 2rem;
+}
+.news-bottom-wrapper {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.graph_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#piechart {
+    width: 60rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding-left: 8rem;
+}
+
+#chart-div {
+    width: 80rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+.admins-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 1rem;
+}
+.admin-container {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+.failed_search {
+    text-align: center;
+    font-size: 25px;
+}
