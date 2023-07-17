@@ -14,6 +14,7 @@ class News extends Model
     // Define the fillable columns
     protected $fillable = [
         'title',
+        'category',
         'content',
         'image',
         'visitors',
@@ -22,6 +23,10 @@ class News extends Model
     public function getCreatedAtAttribute($value)
         {
             return \Carbon\Carbon::parse($value)->format('d.m.Y');
+        }
+    public function scopeByCategory($query, $category)
+        {
+            return $query->where('category', $category);
         }
 }
 

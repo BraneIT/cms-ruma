@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/auth', [LoginController::class, 'authenticate']);
 
-/* ADMIN PANEL ROUTES */
+/* DASHBOARD ROUTES */
 
 Route::get('/dashboard/news', [AdminController::class, 'news'])->middleware('auth:admins');
 Route::get('/dashboard/public_procurements', [AdminController::class, 'show_public_procurements'])->middleware('auth:admins');
@@ -40,4 +40,5 @@ Route::get('/search', [AdminController::class, 'search'])->name('news_search');
 
 Route::get('/', [PageController::class, 'home']);
 Route::get('/vesti', [NewsController::class, 'get_news']);
-Route::get('/news/{id}', [NewsController::class, 'show_news'])->name('news.show');
+Route::get('/vesti/{id}', [NewsController::class, 'show_news'])->name('news.show');
+Route::get('/vesti/{category}', [NewsController::class, 'showByCategory'])->name('news.category');

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Entrada</title>
+    <title>Turisticka Ruma</title>
     <!-- favion -->
     <link
       rel="icon"
@@ -812,6 +812,7 @@
                     <!-- blog list -->
                     <div class="blog-list list-view">
                     @foreach($news as $item)
+                    <a href="{{ route('news.show', ['id' => $item->id]) }}">
                       <article class="article blog-article">
                         <div class="thumbnail">
                           <div class="img-wrap">
@@ -827,78 +828,39 @@
                             <header class="heading">
                               <h3>
                                 <a href="#"
-                                  >{{ $item->title }}</a
+                                  >{{$item->title}}</a
                                 >
                               </h3>
-                              <time class="info-day" datetime="2011-01-12"
-                                >{{ $item->created_at }}</time
-                              >
                             </header>
                             <p>
-                              {{ $item->content}}
+                              {{$item->content}}
                             </p>
                             <footer class="meta">
-                              <div class="star-rating">
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span><span class="icon-star"></span></span>
-                                <span class="disable"
-                                  ><span class="icon-star"></span
-                                ></span>
-                              </div>
                               <div class="footer-sub">
+                                <div class="rate-info">{{$item->category}}</div>
                                 <div class="rate-info">
-                                  Kreator <a href="#">{{$item->created_by}}</a>
+                                  Kreator: <a href="#">{{$item->created_by}}</a>
                                 </div>
                                 <div class="comment">
-                                  <a href="#">37 Comments</a>
+                                  <a href="#">{{$item->created_at}}</a>
                                 </div>
                               </div>
-                              <ul class="ico-action">
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-share"></span
-                                  ></a>
-                                </li>
-                                <li>
-                                  <a href="#"
-                                    ><span class="icon-favs"></span
-                                  ></a>
-                                </li>
-                              </ul>
                             </footer>
                             <div class="link-view">
-                              <a href="#">VIEW POST</a>
+                              <a href="#">Pročitaj više</a>
                             </div>
                           </div>
                         </div>
                       </article>
+                    </a>
                       @endforeach
                       
                     </div>
                   </div>
                   <!-- pagination wrap -->
                   <nav class="pagination-wrap bg-gray">
-                    <div class="btn-prev">
-                      <a href="#" aria-label="Previous">
-                        <span class="icon-angle-right"></span>
-                      </a>
-                    </div>
-                    <ul class="pagination">
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li class="active"><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li>...</li>
-                      <li><a href="#">7</a></li>
-                    </ul>
-                    <div class="btn-next">
-                      <a href="#" aria-label="Previous">
-                        <span class="icon-angle-right"></span>
-                      </a>
-                    </div>
+                    {{ $news->links('pagination.custom') }}
+                   
                   </nav>
                 </div>
                 <!-- sidebar -->
@@ -926,43 +888,15 @@
                           <div class="panel-body">
                             <ul
                               class="side-list category-side-list hovered-list"
-                            >
+                            >@foreach($categories as $category)
                               <li>
-                                <a href="#"
-                                  ><span class="text">Travel Advice</span>
-                                  <span class="count">71</span></a
+                                <!-- ) -->
+                                <a href="{{ route('news.category', ['category' => $category->category]) }}"
+                                  ><span class="text">{{$category->category}}</span>
+                                  <span class="count">{{$category->post_count}}</span></a
                                 >
                               </li>
-                              <li>
-                                <a href="#"
-                                  ><span class="text">Interviews</span>
-                                  <span class="count">79</span></a
-                                >
-                              </li>
-                              <li>
-                                <a href="#"
-                                  ><span class="text">Travel Gears</span>
-                                  <span class="count">33</span></a
-                                >
-                              </li>
-                              <li>
-                                <a href="#"
-                                  ><span class="text">Unusual Places</span>
-                                  <span class="count">93</span></a
-                                >
-                              </li>
-                              <li>
-                                <a href="#"
-                                  ><span class="text">Female Travel</span>
-                                  <span class="count">69</span></a
-                                >
-                              </li>
-                              <li>
-                                <a href="#"
-                                  ><span class="text">Random Muses</span>
-                                  <span class="count">49</span></a
-                                >
-                              </li>
+                             @endforeach
                             </ul>
                           </div>
                         </div>

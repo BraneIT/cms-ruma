@@ -6,6 +6,7 @@ use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -13,6 +14,13 @@ class NewsController extends Controller
 
 function get_news(Request $request) {
     $news = News::all();
+    $news = News::paginate(7);
+    // $categories = News::distinct('category')->pluck('category');
+    $categories = DB::table('news')
+                ->select('category', DB::raw('COUNT(*) as post_count'))
+                ->groupBy('category')
+                ->orderByDesc('post_count')
+                ->get();
     $cookieName = 'site_visits';
 
     // Check if the cookie exists
@@ -31,15 +39,16 @@ function get_news(Request $request) {
          // Increment the total_users count in the database
         DB::table('statistics')->increment('total_users');
         return response()
-            ->view('frontend_views.blog-default', ['news' => $news])
+            ->view('frontend_views.vesti', ['news' => $news])
             ->cookie($cookie);
     }
 
     // Continue with the rest of your code for returning the news view
-    return view('frontend_views.blog-default', ['news' => $news]);
+    return view('frontend_views.vesti', ['news' => $news, 'categories' => $categories]);
 
 
     }
+
     function show_news($id)
     {
         $newsItem = News::findOrFail($id);
@@ -47,5 +56,15 @@ function get_news(Request $request) {
         $newsItem->increment('visitors');
 
         return view('frontend_views.news_show', ['newsItem' => $newsItem]);
+    }
+
+    function showByCategory($category)
+    {
+
+          $news = News::where('category', function ($query) use ($category) {
+        $query->where('category', $category);
+    })->get();
+
+        return view('frontend_views.kategorija', ['news' => $news]);
     }
 }
