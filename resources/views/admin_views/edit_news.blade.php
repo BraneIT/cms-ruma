@@ -37,7 +37,13 @@
             @method('PUT')
 
             <input type="text" name="title" value="{{ $news->title }}">
-             <input type="text" name="category" value="{{ $news->category}}">
+             <select name="category_id" class="dropdown">
+                <option value=""></option>
+           
+                @foreach($categories as $item)
+                <option value="{{ $item->id }}" {{ $news->category_id == $item->id ? 'selected' : '' }}>{{ $item->category }}</option>
+                @endforeach
+            </select>
               <div class="choose_file">
                <p class="upload_image"> Izaberite sliku</p>
                 <input type="file" name="image" id="" class="hide_file">

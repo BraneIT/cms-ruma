@@ -344,3 +344,35 @@
     text-align: center;
     font-size: 25px;
 }
+
+.category_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem 0 1rem 0;
+    border: 1px solid black;
+}
+.category_wrapper > p {
+    margin-left: 2rem;
+    font-size: 25px;
+}
+
+.dropdown {
+    width: 50%;
+    text-align: center;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-bottom: 1px solid black;
+}
+.dropdown:focus {
+    outline: none;
+}
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-direction: column;
+}

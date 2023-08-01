@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 200)->nullable(false);
             $table->string('content', 1000)->nullable(false);
             $table->string('image')->nullable(false);
-            $table->string('category')->nullable(false);
+            $table->string('category_id')->nullable(false);
             $table->unsignedInteger('visitors')->default(0);
             $table->string('created_by');
             $table->timestamps();

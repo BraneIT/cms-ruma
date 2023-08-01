@@ -1,3 +1,11 @@
+:root {
+  --zuta: #fcb040;
+  --zuta-header: #fcb04069;
+  --smedja: #480c01;
+  --zelena: #8dc63f;
+  --zelena-header: #8dc63fcc;
+  --plava: #25aae1;
+}
 .pre-header {
   width: 100%;
   display: flex;
@@ -22,7 +30,7 @@
 }
 
 .pre-header-containter a svg {
-  color: white;
+  color: #fff;
 }
 
 .info {
@@ -76,6 +84,8 @@
 .language {
   position: static;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .current-language {
@@ -138,8 +148,33 @@
   display: flex;
   justify-content: center;
 }
+
+.javne-nabavke .text-wrap {
+  padding-bottom: 36px;
+}
+
+.javne-nabavke .text-wrap div {
+  background-color: #252525;
+  padding: 10px;
+  color: white;
+}
+
+.javne-nabavke .text-wrap div:hover {
+  background-color: #b0a377;
+  padding: 10px;
+  color: #252525;
+  transition: 0.2s;
+}
+
+.inner-main-heading-new {
+  padding-top: 40px;
+}
 .display-none {
   display: none;
+}
+
+.sela {
+  margin-top: 25px;
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
   .lang-mobile {
@@ -156,5 +191,12 @@
   }
   .pre-header-containter {
     width: 90%;
+  }
+  #lang-mobile-flag {
+    display: flex;
+    align-items: center;
+  }
+  #lang-mobile-flag img {
+    padding-right: 5px;
   }
 }

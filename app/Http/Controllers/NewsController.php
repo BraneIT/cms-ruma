@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,14 +14,17 @@ class NewsController extends Controller
 
 
 function get_news(Request $request) {
-    $news = News::all();
-    $news = News::paginate(7);
-    // $categories = News::distinct('category')->pluck('category');
-    $categories = DB::table('news')
-                ->select('category', DB::raw('COUNT(*) as post_count'))
-                ->groupBy('category')
-                ->orderByDesc('post_count')
-                ->get();
+    $news = News::select('news.*', 'categories.category as category_name')
+                ->join('categories', 'news.category_id', '=', 'categories.id')
+                ->paginate(7);
+    
+    $newsCountByCategory = News::select('categories.id as category_id','categories.category as category_name', DB::raw('COUNT(*) as news_count'))
+                               ->join('categories', 'news.category_id', '=', 'categories.id')
+                               ->groupBy('categories.id', 'categories.category')
+                               ->get();
+    $categories = Categories::all();
+    
+   
     $cookieName = 'site_visits';
 
     // Check if the cookie exists
@@ -42,9 +46,11 @@ function get_news(Request $request) {
             ->view('frontend_views.vesti', ['news' => $news])
             ->cookie($cookie);
     }
+   
+
 
     // Continue with the rest of your code for returning the news view
-    return view('frontend_views.vesti', ['news' => $news, 'categories' => $categories]);
+    return view('frontend_views.vesti', ['news' => $news, 'categories' => $categories, 'count'=>$newsCountByCategory]);
 
 
     }
@@ -58,13 +64,33 @@ function get_news(Request $request) {
         return view('frontend_views.news_show', ['newsItem' => $newsItem]);
     }
 
-    function showByCategory($category)
+  
+
+      public function showNewsByCategory($categoryId)
     {
+        $newsItems = DB::table('news')
+        ->join('categories', 'news.category_id', '=', 'categories.id')
+        ->select('news.*', 'categories.category as category_name')
+        ->where('news.category_id', '=', $categoryId)
+        ->paginate(7);
 
-          $news = News::where('category', function ($query) use ($category) {
-        $query->where('category', $category);
-    })->get();
+        // Find the category by its id
+        $category = Categories::find($categoryId);
+         $newsCountByCategory = News::select('categories.id as category_id','categories.category as category_name', DB::raw('COUNT(*) as news_count'))
+                               ->join('categories', 'news.category_id', '=', 'categories.id')
+                               ->groupBy('categories.id', 'categories.category')
+                               ->get();
 
-        return view('frontend_views.kategorija', ['news' => $news]);
+        // If category doesn't exist, you may want to return an error or redirect
+        if (!$category) {
+            // return error or redirect, this is up to you.
+            return redirect()->back()->withErrors('Category not found.');
+        }
+
+        // If the category exists, get all the related news
+        $news = $category->news;
+
+        // Return the news to the view
+        return view('frontend_views.kategorija', ['news' => $news, 'count' => $newsCountByCategory, 'newsItems' => $newsItems]);
     }
 }

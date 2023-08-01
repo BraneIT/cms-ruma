@@ -87,7 +87,7 @@
                     ></a>
                     <div class="dropdown-menu">
                       <ul>
-                        <li><a href="index.html">Home - Icon Bar</a></li>
+                        <li><a href="/">Home - Icon Bar</a></li>
                         <li>
                           <a href="home-search-bar.html">Home - Tour Search</a>
                         </li>
@@ -794,7 +794,7 @@
                 <!-- breadcrumb -->
                 <nav class="breadcrumbs">
                   <ul>
-                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="/">HOME</a></li>
                     <li><span>Blog</span></li>
                   </ul>
                 </nav>
@@ -811,18 +811,29 @@
                   <div class="blog-holder">
                     <!-- blog list -->
                     <div class="blog-list list-view">
+                     @php
+                      function limit_words($string, $word_limit) {
+                          $words = explode(' ', $string);
+
+                          if (count($words) > $word_limit) {
+                              return implode(' ', array_slice($words, 0, $word_limit)) . '...';
+                          }
+
+                          return implode(' ', $words);
+                      }
+                    @endphp
                     @foreach($news as $item)
-                    <a href="{{ route('news.show', ['id' => $item->id]) }}">
+                    
                       <article class="article blog-article">
+                        
                         <div class="thumbnail">
                           <div class="img-wrap">
-                            <a href="#"
-                              ><img
-                                src="img/blog/img-04.jpg"
+                            <img
+                                src="{{ asset('storage/'. $item->image) }}"
                                 height="240"
                                 width="350"
                                 alt="image description"
-                            /></a>
+                            />
                           </div>
                           <div class="description">
                             <header class="heading">
@@ -833,13 +844,14 @@
                               </h3>
                             </header>
                             <p>
-                              {{$item->content}}
+                              
+                              {{limit_words($item->content, 35)}}
                             </p>
                             <footer class="meta">
                               <div class="footer-sub">
-                                <div class="rate-info">{{$item->category}}</div>
+                                <div class="rate-info">{{$item->category_name }}</div>
                                 <div class="rate-info">
-                                  Kreator: <a href="#">{{$item->created_by}}</a>
+                                  Kreator: {{$item->created_by}}
                                 </div>
                                 <div class="comment">
                                   <a href="#">{{$item->created_at}}</a>
@@ -847,12 +859,13 @@
                               </div>
                             </footer>
                             <div class="link-view">
-                              <a href="#">Pročitaj više</a>
+                              <a href="{{ route('news.show', ['id' => $item->id]) }}">Pročitaj više</a>
                             </div>
                           </div>
                         </div>
+                        
                       </article>
-                    </a>
+                    
                       @endforeach
                       
                     </div>
@@ -876,7 +889,7 @@
                               href="#collapse1"
                               aria-expanded="true"
                               aria-controls="collapse1"
-                              >TOP CATEGORIES</a
+                              >Kategorije</a
                             >
                           </h4>
                         </div>
@@ -888,13 +901,15 @@
                           <div class="panel-body">
                             <ul
                               class="side-list category-side-list hovered-list"
-                            >@foreach($categories as $category)
-                              <li>
-                                <!-- ) -->
-                                <a href="{{ route('news.category', ['category' => $category->category]) }}"
-                                  ><span class="text">{{$category->category}}</span>
-                                  <span class="count">{{$category->post_count}}</span></a
-                                >
+                            >@foreach($count as $category)
+                           
+                            <li>
+                                <a href="{{ route('news.category', ['categoryId' => $category->category_id]) }}">
+                           
+                                  <span class="text">{{$category->category_name}}</span>
+                                  <span class="count">{{$category->news_count }}</span></a
+                             
+                                </a>
                               </li>
                              @endforeach
                             </ul>

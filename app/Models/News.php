@@ -28,5 +28,9 @@ class News extends Model
         {
             return $query->where('category', $category);
         }
+    public function category()
+        {
+            return $this->belongsTo('App\Models\Categories', 'category_id');
+        }
 }
 

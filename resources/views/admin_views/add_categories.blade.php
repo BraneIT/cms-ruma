@@ -32,31 +32,16 @@
         </form>
     </div>
     <div class="add_news_container">
-        <form action="{{ route('store_news') }}" method="post" enctype="multipart/form-data" class="add_news_form">
+        <form action="{{ route('store_categories') }}" method="post" enctype="multipart/form-data" class="add_news_form">
             @csrf
-            <input type="text" name="title" placeholder="Naslov">
-            <select name="category_id" class="dropdown">
-                <option value="">Izaberite kategoriju</option>
-           
-                @foreach($categories as $item)
-                <option value="{{ $item->id }}">{{$item->category}}</option>
-                @endforeach
-            </select>
-            <div class="choose_file">
-                 <p class="upload_image"> Izaberite sliku</p>
-                <input type="file" name="image" id="" class="hide_file">
-            </div>
-            <textarea type="text" name="content" placeholder="Sadrzaj" class="content"></textarea>
-            <button type="submit" class="logout-button">Dodaj vijest</button>
+            <input type="text" name="category" placeholder="Kategorija">
+            <button type="submit" class="logout-button">Dodaj kategoriju</button>
             @if ($errors->any())
     <div class="alert alert-danger">
-        <ul><div class="error">
+        <ul>
             @foreach ($errors->all() as $error)
-                
-                    <p>{{ $error }}</p>
-                
+                <li>{{ $error }}</li>
             @endforeach
-            </div>
         </ul>
     </div>
 @endif

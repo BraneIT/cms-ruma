@@ -17,6 +17,7 @@
 
         <div class="menu-container">
         <a href="/dashboard/news">lista vijesti</a>
+        <a href="/dashboard/categories">kategorije vesti</a>
         <a href="/dashboard/public_procurements">lista javnih nabavki</a>
         <a href="/dashboard/admins">Lista admina</a>
         <a href="/">Podesavanja</a>

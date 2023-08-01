@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Models\Categories;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Google\Service\Books\Category;
 
 class AdminController extends Controller
 {
@@ -38,14 +40,15 @@ class AdminController extends Controller
     function show_add_news(){
         $user = Auth::user();
         $fullName = $user->full_name;
-        return view('admin_views.add_news')->with('fullName', $fullName);
+        $categories = Categories::all();
+        return view('admin_views.add_news')->with('fullName', $fullName)->with('categories', $categories);
     }
     function store_news(Request $request){
         $user = Auth::user();
         $fullName = $user->full_name;
         $formfields= $request->validate([
             'title' => 'required',
-            'category' => 'required',
+            'category_id' => 'required|exists:categories,id',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'content' => 'required',
         ]);
@@ -61,7 +64,7 @@ class AdminController extends Controller
 
         $news = new News();
         $news->title = $formfields['title'];
-        $news->category = $formfields['category'];
+        $news->category_id = $formfields['category_id'];
         $news->image = $imageRelativePath;
         $news->content = $formfields['content'];
         $news->created_by = $fullName;
@@ -77,7 +80,14 @@ class AdminController extends Controller
         $news = News::findOrFail($id);
          $date = Carbon::parse($news->created_at);
         $formattedDate = $date->format('d.m.Y');
-        return view('admin_views.edit_news')->with('news', $news)->with('fullName', $fullName)->with('formatedDate',$formattedDate);;
+
+        $categories = Categories::all();
+         return view('admin_views.edit_news', [
+        'news' => $news,
+        'fullName' => $fullName,
+        'formattedDate' => $formattedDate,
+        'categories' => $categories, // Pass the categories to the view
+    ]);
     }
 
     public function update(Request $request, $id)
@@ -136,5 +146,58 @@ class AdminController extends Controller
         return view('admin_views.news_search', compact('news', 'noResults'))->with('fullName', $fullName);
     }
 
+    function show_categories(){
+         $user = Auth::user();
+        $fullName = $user->full_name;
+
+        $categories = Categories::all();
+        return view('admin_views.category')->with('fullName', $fullName)->with('categories', $categories);
+    }
+
+    function add_categories(){
+        $user = Auth::user();
+        $fullName = $user->full_name;
+        return view('admin_views.add_categories')->with('fullName', $fullName);
+
+    }
+    function store_categories(Request $request){
+         $formfields= $request->validate([
+            'category' => 'required'
+
+        ]);
+       
+        $categories = new Categories();
+        $categories->category = $formfields['category'];
+        $categories->save();
+
+        return redirect('/dashboard/categories');
+    }
+    function show_edit_categories($id){
+         $categories = Categories::findOrFail($id);
+         $user = Auth::user();
+        $fullName = $user->full_name;
+        return view('admin_views.show_edit_categories')->with('fullName', $fullName)->with('categories', $categories);
+    }
+    function edit_categories(Request $request, $id){
+
+        $categories = Categories::findOrFail($id);
+         $formfields= $request->validate([
+            'category' => 'required'
+
+        ]);
+       
+        $categories->category = $formfields['category'];
+        $categories->save();
+
+        return redirect('/dashboard/categories');
+    }
+
+    function destroy_categories($id){
+        $categories = Categories::findOrFail($id);
+        $categories->delete();
+
+        // Redirect or return a response as needed
+        return redirect()->back()->with('success', 'News deleted successfully.');
+    }
   
 }

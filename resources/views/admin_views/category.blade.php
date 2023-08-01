@@ -34,49 +34,40 @@
         <button type="submit" class="logout-button">Logout</button>
     </form>
     </div>
-     <div class="search">
-        <form action="/search" method="GET" class="search_form">
-            <input type="text" name="query" placeholder="Pretrazi vijesti...">
-            <button type="submit" class="logout-button">Pretrazi</button>
-        </form>
-    </div>
+    
     <div class="add_news">
-      <a href="/dashboard/add_news">Dodaj vijest</a>
+      <a href="/dashboard/categories/add">Dodaj kategoriju</a>
     </div>
     </div>
 
     
     
     <div class="news-container">
-            @foreach($news as $item)
-                <div class="news-item">
-                    <div class="news-top">
-                        <img src="{{ asset('storage/'. $item->image) }}" alt="Image" srcset="" class="news-image">
-                        <div class="info-containerr">
-                            <p class="info-title">{{ $item->title }}</p>
-                        </div>
-                        <div class="btns-container">
-                        <a href="{{ route('edit_news', $item->id) }}" class="edit_btn">Izmijeni vijest</a>
-                        <form action="{{ route('delete_news', $item->id) }}" method="POST" class="form-delete">
+            @foreach($categories as $item)
+                <div class="category_wrapper">
+
+                   <p>{{$item->category}} </p> 
+                    <div class="btns-container">
+                        <a href="{{ route('show_edit_categories', $item->id) }}" class="edit_btn">Izmijeni kategoriju</a>
+                        <form action="{{ route('delete_categories', $item->id) }}" method="POST" class="form-delete">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="delete-button">Obrisi vijest</button>
+                            <button type="submit" class="delete-button">Obrisi kategoriju</button>
                         </form>
                         </div>
-                    </div>
-                    <div class="news-bottom">
-                        <div class="news-bottom-wrapper">
-                        <p>Kreator: {{$item->created_by}}</p> 
-                        <p >Datum objave: {{$item->created_at}}</p>
-                    </div>
-                    </div>
+                </div>
+                        
+                      
+                    
+                  
+                    
                 <!-- <p>{{ $item->title }}</p>
                 <img src="{{ asset('storage/' . $item->image) }}" alt="Image" srcset="" class="news-image">
                 <p>{{$item->content}}</p>
                 <p>{{$item->created_by}}</p> -->
-                </div>
+                
             @endforeach
-            <div class="pagination">{{ $news->links() }}</div>
+            
     </div>
     </div>
 </body>

@@ -35,10 +35,21 @@ Route::get('/news/{id}/edit', [AdminController::class, 'edit'])->name('edit_news
 Route::put('/news/{id}', [AdminController::class, 'update'])->name('update_news');
 Route::get('/dashboard/admins', [AdminController::class, 'show_admins']);
 Route::get('/search', [AdminController::class, 'search'])->name('news_search');
+Route::get('/dashboard/categories', [AdminController::class, 'show_categories']);
+Route::get('/dashboard/categories/add', [AdminController::class, 'add_categories']);
+Route::post('/store_categories', [AdminController::class, 'store_categories'])->name('store_categories');
+Route::get('/dashboard/categories/{id}/edit', [AdminController::class, 'show_edit_categories'])->name('show_edit_categories');
+Route::put('/categories/{id}/edit', [AdminController::class, 'edit_categories'])->name('edit_categories');
+Route::delete('/categories/{id}', [AdminController::class, 'destroy_categories'])->name('delete_categories');
+
 
 /* FRONTEND ROUTES */  
 
 Route::get('/', [PageController::class, 'home']);
+Route::get('/istorijat', [PageController::class, 'history']);
+Route::get('/arheologija', [PageController::class, 'archaeology']);
 Route::get('/vesti', [NewsController::class, 'get_news']);
 Route::get('/vesti/{id}', [NewsController::class, 'show_news'])->name('news.show');
-Route::get('/vesti/{category}', [NewsController::class, 'showByCategory'])->name('news.category');
+Route::get('/vesti/kategorija/{categoryId}', [NewsController::class, 'showNewsByCategory'])->name('news.category');
+
+// Route::get('/vesti/{category}', [NewsController::class, 'showByCategory'])->name('news.category');
